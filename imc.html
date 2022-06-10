@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora_IMC</title>
+    <style>
+        body{
+            background-image: linear-gradient(to right, rgb(56, 27, 27), rgb(231, 13, 13));
+            text-align: center;
+        }
+
+        .Calculadora_IMC{
+            background-color: black;
+            display: inline-block;
+            padding: 50px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        p{
+            color: aliceblue;
+            text-align: justify;
+        }
+
+        label{
+            color: aliceblue;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de IMC</h1>
+    <div class="Calculadora_IMC">
+        <form>
+            <label for="peso">Informe o seu peso:</label><br>
+            <input type="text" 
+                   id="peso"
+                   name="peso">
+    <br>               
+            <label for="altura">Informe a sua altura:</label><br>
+            <input type="text"
+                   id="altura"
+                   name="altura">
+        </form>
+    
+        <p>IMC:
+            <span id="imc_display">
+    
+            </span>
+        </p>
+    
+        <p>Situação:
+            <span id="sit">
+    
+            </span>
+        </p>
+    
+        <button onclick="calcularImc();">
+            Calcular IMC
+        </button>
+    <br>
+        <script>
+            function calcularImc(){
+                let imc_peso = parseFloat(document.getElementById("peso").value);
+                let imc_altura = parseFloat(document.getElementById("altura").value);
+                
+                let imc = imc_peso / (imc_altura * imc_altura)
+    
+                document.getElementById('imc_display').innerHTML = imc.toFixed(2);
+               
+               if (imc < 18.5) {
+                   situacao = "Abaixo do peso"
+                   cor = 'yellow'
+               } else if (imc >= 18.5 && imc <25){
+                   situacao = "Peso Normal";
+                   cor = 'green'
+               } else if (imc >= 25 && imc <30){
+                   situacao = 'Sobrepeso';
+                   cor = 'lightsalmon'
+               } else if (imc >= 30 && imc <35){
+                   situacao = "Obesidade Grau 1";
+                   cor = "orange" 
+               } else if (imc >=35 && imc <40){
+                   situacao = "Obesidade Grau 2";
+                   cor = "tomato"
+               } else if (imc >=40){
+                   situacao = "Obesidade Grau 3";
+                   cor = "red"
+               } else if (imc_altura = 0 && imc_peso < 1){
+                   mensagem = "Número inválido, faça novamente"
+               } else if (imc_peso < 1){
+                   mensagem = "Número inválido, faça novamente."
+               }
+ 
+               
+               document.getElementById("sit").innerHTML = situacao;
+               document.getElementById("sit").style.color = cor;       
+               }           
+        </script>
+    </div>
+<br>
+
+</body>
+</html>
